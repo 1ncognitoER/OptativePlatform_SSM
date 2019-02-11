@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czy.op.dao.CollectionItDao">
+	<!-- 联合关系 -->
+	<resultMap type="CollectionIt" id="searchCollectionIt">
+		<!-- <id column="carId" property="carId" /> -->
+		<result column="userId" property="userId" />
+		<!-- property:实体类中的属性名  ofType:该集合中元素的数据类型 -->
+		<collection property="carList" ofType="Car">
+			<result column="carId" property="carId" />
+			<result column="carPrice" property="carPrice" />
+			<result column="carBrand" property="carBrand" />
+			<result column="carName" property="carName" />
+			<!-- <result column="carlogo" property="carlogo" /> -->
+			<!-- column：表中的外键；property:类中属性的名字；javaType：关联的数据类型（java） -->
+			<association column="carlogo" property="imgLogo" javaType="Image">
+				<result column="imgPath" property="imgPath" />
+			</association>
+		</collection>
+	</resultMap>
+	
+	<!-- 添加关注 -->
+	<insert id="addCollection" parameterType="CollectionIt">
+		<![CDATA[
+		INSERT INTO OP_COLLECTION VALUES(#{userId},#{carId})
+		]]>
+	</insert>
+	<!-- 查询用户关注所有车辆 -->
+	<select id="searchAllCollection" parameterType="CollectionIt" resultMap="searchCollectionIt">
+		<![CDATA[
+		SELECT T1.USERID,T1.CARID,T1.CARPRICE,T1.CARBRAND,T1.CARNAME,OP_IMAGE.IMGPATH FROM
+			(SELECT OP_COLLECTION.USERID,OP_CAR.CARID,OP_CAR.CARPRICE,OP_CAR.CARBRAND,OP_CAR.CARNAME,OP_CAR.CARLOGO
+				FROM OP_COLLECTION LEFT JOIN OP_CAR ON OP_COLLECTION.CARID=OP_CAR.CARID)T1 LEFT JOIN OP_IMAGE ON T1.CARLOGO = OP_IMAGE.IMGID
+		WHERE USERID = #{userId}
+		]]>
+	</select>
+	<!-- 取消关注 -->
+	<delete id="unsubscribe" parameterType="CollectionIt">
+		<![CDATA[
+		DELETE FROM OP_COLLECTION WHERE USERID = #{userId} AND CARID = #{carId}
+		]]>
+	</delete>
+	
+</mapper>

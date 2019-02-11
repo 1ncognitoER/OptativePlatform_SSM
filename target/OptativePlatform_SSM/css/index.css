@@ -1,0 +1,60 @@
+body{ color: grey;}
+/* operate */
+#operate{ display: none; position: fixed; right: 50px; bottom: 50px; background-color: orangered;}
+.toTop{ width: 45px; height: 45px;}
+.he-wrapper,.fi-wrapper,.co-wrapper{ width: 1000px; margin: 0 auto;}
+
+/* head */
+#head{ padding-top: 10px;}
+.he-logo{ width: 40px; height: 40px;}
+.he-word{ font: bold normal 18px/30px "微软雅黑"; color: grey; margin: 5px 0 5px 30px; border-left: 2px solid grey; padding-left: 30px;}
+.he-info{ margin: 9px 0 9px 50px;}
+.he-info li{ display: inline-block; font-size: 16px; color: grey; margin-left: 10px;}
+.he-info li a{ color: orangered; cursor: pointer;}
+.he-search{ border: 1px solid orangered; background-color: white; margin-top: 5px;}
+.searchBox{ width: 200px; border: none; font: normal normal 14px/16px "微软雅黑"; color: grey;}
+.searchButton{ width: 28px; height: 28px; background-image: url(../img/index/magnifier.png); background-color: orangered; border: none; cursor: pointer;}
+
+/* filter */
+#filter{ margin: 10px;}
+.fi-wrapper{ border: 1px solid orangered;}
+.select-result{ border-bottom: 1px solid orangered; padding: 10px 0;}
+.deleteButton{ border: none; background-color: orangered; color: white; cursor: pointer;}
+.select-list{ width: 900px; margin: 0px auto; padding: 10px 0; border-bottom: 1px dotted orangered;}
+.select-end-list{ border: none;}
+.selects dl dt,.selects dl dd{ display: inline-block; margin-right: 10px;}
+.selects dl dt{ width: 100px; text-align: right; font-weight: bold; margin-right: 30px; color: black;}
+.selects dl dd a{ cursor: pointer;}
+.select-result dl dt{ margin: 5px 0;}
+
+.selects dl dd{ padding: 5px 5px;}
+.selects dl dd a{ color: gray; padding: 5px 5px;}
+.selects dl dd:hover{ background-color: orangered; border-radius: 10px; color: white;}
+.selects dl dd a:hover{ color: white;}
+
+.selected a{ color: white!important; cursor: pointer;}
+.selected{ background-color: orangered; border-radius: 10px;}
+
+/* content */
+.co-wrapper{ border: 1px solid orangered;}
+.co-information{ padding-left: 50px; border-top: 1px solid orangered;}
+.co-logo{ text-align: center; margin-top: 47px;}
+.co-info{ border-left: 1px solid orangered; margin-left: 50px; padding-left: 40px; margin-top: 26px; margin-bottom: 26px;}
+.co-word,.info-brand,.info-name,.info-price,.info-detail{ display: block; margin: 10px 0;}
+.co-word{ color: black; width: 105px;}
+.info-brand{ font-weight: bold;}
+.info-name,.info-inner-price{ color: orangered;}
+.info-name{ cursor: pointer;}
+.info-inner-detail{ margin-right: 20px;}
+.info-inner-detail:hover,.info-inner-compare:hover{ color: orangered; cursor: pointer;}
+.co-img{ margin-top: 5px; margin-right: 50px;}
+/*.img-pic{ cursor: pointer;}
+.img-pic:hover{ border-left: 2px solid orangered;}*/
+
+.not-info{ display: none; width: 1000px; margin: 0 auto 10px; font: bold normal 20px/40px "微软雅黑"; text-align: center;}
+
+/* tail */
+#tail{ text-align: center;}
+.ta-wrapper{ margin: 20px 0;}
+.ta-copyright{ font-size: 14px; margin-bottom: 10px; color: gray;}
+.ta-img{ width: 20px; height: 20px;}

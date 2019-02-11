@@ -1,0 +1,36 @@
+/* head */
+#head{ margin-top: 10px;}
+.he-wrapper{ width: 900px; margin: 0 auto;}
+.he-logo{ width: 40px; height: 40px; cursor: pointer;}
+.he-word{ font: bold normal 18px/30px "微软雅黑"; color: grey; margin: 5px 0 5px 10px; border-left: 2px solid grey; padding-left: 10px; cursor: pointer;}
+.he-words{ border: none;}
+.he-words:hover{ color: orangered;}
+/* personal */
+#personal{ background-color: lavender;}
+.per-wrapper{ width: 900px; margin: 10px auto 10px;}
+.per-info{ text-align: center; position: relative; left: 450px; top: 200px;}
+.per-img{ padding: 150px 0; cursor: pointer; position: relative; left: 50px;}
+.per-inner-img{ width: 200px; height: 200px; border-radius: 100px;}
+.per-username,.per-operate{ width: 200px; font: normal normal 20px/20px "微软雅黑"; display: block; margin: 20px 0;}
+.per-username{ font-weight: bold; font: normal normal 30px/20px "微软雅黑";}
+.per-operate{ cursor: pointer; color: orangered;}
+.per-operate:hover{ color: grey;}
+
+/* collection */
+#collection{ text-align: center; display: none;}
+.co-information{ /* width: 190px; */ display: inline-block; border: 2px solid grey; border-radius: 25px; color: grey; background-color: white; margin: 10px 10px;}
+.co-information:hover{ border-color: orangered;}
+.co-logo{ margin: 25px 10px 0 10px;}
+.co-info{ margin-right: 10px;}
+.co-word,.info-name,.info-price,.info-detail,.info-compare,.info-unsubscribe{ display: block; margin: 10px 0;}
+.co-word{ width: 105px; color: black;}
+.info-name{ color: orangered; cursor: pointer;  font-weight: bold;}
+.info-detail:hover,.info-compare,.info-unsubscribe:hover{ color: orangered; cursor: pointer;}
+
+.collec-tip{ font: bold normal 20px/180px "微软雅黑"; color: orangered; cursor: pointer;}
+
+/* tail */
+#tail{ text-align: center; margin-top: 30px;}
+.t-wrapper{ padding: 10px 0;}
+.t-copyright{ font-size: 14px; margin-bottom: 10px; color: gray;}
+.t-img{ width: 20px; height: 20px;}

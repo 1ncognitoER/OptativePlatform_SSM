@@ -1,0 +1,70 @@
+/*** operate ***/
+#operate{ display: none; position: fixed; right: 0px; bottom: 50px; background-color: orangered;}
+.toTop{ width: 45px; height: 45px;}
+
+/*** addCompare ***/
+#addCompare{ position: fixed; left: 0; top: 200px;}
+.readyCompareOpe,.startCompareOpe{ display: none;}
+.startCompareOpe{ background-color: orangered; color: white;}
+.startCompareOpe span{ display: block; width: 32px; height: 44px; padding: 10px 15px; cursor: pointer;}
+.inner-select{ width: 200px; height: 30px; color: orangered;}
+.brands-select{ margin-bottom: 4px;}
+
+/*** head ***/
+#head{ padding-top: 10px;}
+.he-wrapper{  width: 1000px; margin: 0 auto;}
+.he-logo{ width: 40px; height: 40px;}
+.he-word{ font: bold normal 18px/30px "微软雅黑"; color: grey; margin: 5px 0 5px 30px; border-left: 2px solid grey; padding-left: 30px;}
+.he-info{ margin: 9px 0 9px 50px;}
+.he-info li{ display: inline-block; font-size: 16px; color: grey; margin-left: 10px;}
+.he-info li a{ color: orangered; cursor: pointer;}
+
+/*** content ***/
+.c-titl{ width: 1000px; margin: 10px auto 0; background-color: orangered; border-radius: 10px;}
+.c-titl ul{ margin-left: 30px; margin-top: 3px; color: white; font-weight: bold;}
+.c-titl ul li{ display: inline-block; padding: 7px 10px 10px; border-top: 2px solid orangered; cursor: pointer;}
+.c-titl ul li:hover{ background-color: #ff662d; color: white;}
+.nav-paremeter{ background-color: white; color: orangered;}
+
+/* 参数部分 */
+.co-parameter{ margin-top: 20px; text-align: center; color: gray;}
+.co-title-information,.co-all-information{ display: inline-block;}
+.co-all-information{ text-align: left;}
+.co-information{ display: inline-block;}
+
+.co-title-information,.co-information{ width: 202px;}
+.co-information{ width: 265px!important;}
+.tab-es,.tab-es-title{ border: 1px solid lightblue;}
+.table-1{ border-color: orangered;}
+.tab-es{ text-align: center;}
+.tab-es-title{ text-align: right; color: orangered;}
+.tab-es-title span{ padding-right: 20px;}
+.co-compare{ display: block; width: 32px; padding: 24px 84px!important; cursor: pointer; color: orangered; font-weight: bold;}
+.co-compare:hover{ background-color: orangered; color: white;}
+.co-logo{ padding: 5px 40px;}
+.info-names{ margin-top: 14px; margin-left: 30px;}
+.co-clear{ display: block; padding-bottom: 10px; color: orangered; cursor: pointer;}
+.co-clear:hover{ color: grey;}
+.INFO{ display: block; padding: 10px 0;}
+.tab-e{ margin-top: 20px;}
+
+/* 图片部分 */
+.co-image{ width: 1000px; margin: 20px auto 0; display: none;}
+.co-images{ border-top: 2px solid orangered; border-bottom: 2px solid orangered; margin-bottom: 10px;}
+.information-wrapper{ text-align: center;}
+.car-information{ width: 190px; display: inline-block; color: grey; background-color: white;}
+/* .car-logo{ margin: 37px 10px 0 10px;} */
+/* .car-word, */.car-name,.car-price,.car-engine,.car-driveMode,.car-gearbox{ display: block; margin: 10px 0;}
+/* .car-word{ color: black;} */
+.car-name{ color: orangered; cursor: pointer; font-weight: bold;}
+
+.image-wrapper{ width: 790px; margin-left: 7px; padding-left: 7px; padding-top: 7px; padding-bottom: 7px; border-left: 2px solid orangered;}
+.image-wrapper img{ border: 1px solid gray; margin: 2px; width: 389px; height: 268px}
+.image-wrapper img:hover{ border-color: orangered;}
+.haveNotImg{ font: bold normal 20px/170px "微软雅黑"; color: orangered; display: block; margin-left: 300px;}
+
+/*** tail ***/
+#tail{ text-align: center;}
+.ta-wrapper{ margin: 20px 0;}
+.ta-copyright{ font-size: 14px; margin-bottom: 10px; color: gray;}
+.ta-img{ width: 20px; height: 20px;}

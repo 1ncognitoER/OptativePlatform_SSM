@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czy.op.dao.CarDao">
+	<!-- 一对一联合 -->
+	<resultMap type="Car" id="carMap">
+		<!-- column:数据库中的列名，property：实体类中的属性名 id表示主键 result表示其他字段 -->
+		<id column="carId" property="carId" />
+		<result column="carPrice" property="carPrice" />
+		<result column="carBrand" property="carBrand" />
+		<result column="carName" property="carName" />
+		<result column="carlogo" property="carlogo" />
+		<!-- column：表中的外键；property:类中属性的名字；javaType：关联的数据类型（java） -->
+		<association column="carlogo" property="imgLogo" javaType="Image">
+			<result column="imgPath" property="imgPath" />
+		</association>
+	</resultMap>
+	<!-- 一对一联合 -->
+	<resultMap type="Car" id="carDetailMap">
+		<id column="carId" property="carId" />
+		<result column="carPrice" property="carPrice" />
+		<result column="carBrand" property="carBrand" />
+		<result column="carName" property="carName" />
+		<result column="carLevel" property="carLevel" />
+		<result column="carEngine" property="carEngine" />
+		<result column="carIntake" property="carIntake" />
+		<result column="carTorque" property="carTorque" />
+		<result column="carFuelModel" property="carFuelModel" />
+		<result column="carGearbox" property="carGearbox" />
+		<result column="carDriveMode" property="carDriveMode" />
+		<result column="carLength" property="carLength" />
+		<result column="carWidth" property="carWidth" />
+		<result column="carHeight" property="carHeight" />
+		<result column="carWheelbase" property="carWheelbase" />
+		<result column="carSpeed" property="carSpeed" />
+		<result column="carFuelConsumption" property="carFuelConsumption" />
+		<result column="carWarranty" property="carWarranty" />
+		<result column="carlogo" property="carlogo" />
+		<association column="carlogo" property="imgLogo" javaType="Image">
+			<result column="imgPath" property="imgPath" />
+		</association>
+	</resultMap>
+	<!-- 一对多联合 -->
+	<resultMap type="Car" id="carImagesMap">
+		<id column="carId" property="carId" />
+		<result column="carPrice" property="carPrice" />
+		<result column="carName" property="carName" />
+		<result column="carEngine" property="carEngine" />
+		<result column="carIntake" property="carIntake" />
+		<result column="carGearbox" property="carGearbox" />
+		<result column="carDriveMode" property="carDriveMode" />
+		<result column="carWarranty" property="carWarranty" />
+		<!-- property:实体类中的属性名  ofType:该集合中元素的数据类型 -->
+		<collection property="imgList" ofType="Image">
+			<result column="imgPath" property="imgPath"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 查询所有车辆信息 -->
+	<select id="selectAllCar" resultMap="carMap">
+		<![CDATA[
+		SELECT OP_CAR.CARID,OP_CAR.CARPRICE,OP_CAR.CARBRAND,OP_CAR.CARNAME,OP_IMAGE.IMGPATH
+			FROM OP_CAR LEFT JOIN OP_IMAGE ON OP_CAR.CARLOGO = OP_IMAGE.IMGID
+		]]>
+	</select>
+	<!-- 根据条件查询车辆信息 -->
+	<select id="selectCar" parameterType="Car" resultMap="carMap">
+		<![CDATA[
+		SELECT NE.CARID,NE.CARPRICE,NE.CARBRAND,NE.CARNAME,NE.IMGPATH FROM (
+			SELECT OP_CAR.*,OP_IMAGE.IMGPATH
+				FROM OP_CAR LEFT JOIN OP_IMAGE ON OP_CAR.CARLOGO = OP_IMAGE.IMGID
+		]]>
+		<where>
+			1=1
+			<if test="carLength != -1 and carWidth != -1">
+				<![CDATA[
+				AND OP_CAR.CARPRICE BETWEEN #{carLength} AND #{carWidth}
+				]]>
+			</if>
+			<if test="carLevel != '' and carLevel != null">
+				<![CDATA[
+				AND OP_CAR.CARLEVEL LIKE '%${carLevel}%'
+				]]>
+			</if>
+			<if test="carDriveMode != '' and carDriveMode != null">
+				<![CDATA[
+				AND OP_CAR.CARDRIVEMODE LIKE '%${carDriveMode}%'
+				]]>
+			</if>
+			<if test="carGearbox != '' and carGearbox != null">
+				<![CDATA[
+				AND OP_CAR.CARGEARBOX LIKE '%${carGearbox}%'
+				]]>
+			</if>
+			<if test="carIntake != '' and carIntake != null">
+				<![CDATA[
+				AND OP_CAR.CARINTAKE LIKE '%${carIntake}%'
+				]]>
+			</if>
+		</where>
+		<![CDATA[
+		)NE
+		]]>
+	</select>
+	<!-- 查询所有车辆名称和id -->
+	<select id="searchAllCarName" resultType="Car">
+		<![CDATA[
+		SELECT OP_CAR.CARID,OP_CAR.CARNAME FROM OP_CAR
+		]]>
+	</select>
+	<!-- 根据批量的id查询对应信息 -->
+	<!-- List:forech中的collection的属性类型必须为:list,item的值可以随意,Dao接口中参数名字随意 -->
+	<select id="searchCarByMuchID" resultMap="carMap">
+		<![CDATA[
+		SELECT OP_CAR.CARID,OP_CAR.CARPRICE,OP_CAR.CARBRAND,OP_CAR.CARNAME,OP_IMAGE.IMGPATH
+			FROM OP_CAR LEFT JOIN OP_IMAGE ON OP_CAR.CARLOGO = OP_IMAGE.IMGID
+		WHERE OP_CAR.CARID IN
+		]]>
+		<foreach collection="list" item="carIdListItem" open="(" separator="," close=")">
+			#{carIdListItem}
+		</foreach>
+	</select>
+	<!-- 根据名称模糊查询车辆信息 -->
+	<!--<select id="searchCar" parameterType="Car" resultMap="carMap">
+		<![CDATA[
+		SELECT OP_CAR.CARID,OP_CAR.CARPRICE,OP_CAR.CARBRAND,OP_CAR.CARNAME,OP_IMAGE.IMGPATH
+			FROM OP_CAR LEFT JOIN OP_IMAGE ON OP_CAR.CARLOGO = OP_IMAGE.IMGID
+		WHERE OP_CAR.CARNAME LIKE '%${carName}%'
+		]]>
+	</select>-->
+	<!-- 根据id查询车辆详细信息 -->
+	<select id="selectCarById" parameterType="Car" resultMap="carDetailMap">
+		<![CDATA[
+		SELECT OP_CAR.*,OP_IMAGE.IMGPATH
+			FROM OP_CAR LEFT JOIN OP_IMAGE ON OP_CAR.CARLOGO = OP_IMAGE.IMGID
+		WHERE OP_CAR.CARID = #{carId}
+		]]>
+	</select>
+	<!-- 查询所有车辆品牌 -->
+	<select id="selectAllBrand" resultType="Car">
+		<![CDATA[
+		SELECT DISTINCT OP_CAR.CARBRAND FROM OP_CAR
+		]]>
+	</select>
+	<!-- 根据品牌查询该品牌所有车辆名称 -->
+	<select id="selectCarNameByBrand" parameterType="Car" resultType="Car">
+		<![CDATA[
+		SELECT OP_CAR.CARID,OP_CAR.CARNAME FROM OP_CAR WHERE OP_CAR.CARBRAND = #{carBrand}
+		]]>
+	</select>
+	<!-- 根据汽车id查询车辆图片信息及部分参数 -->
+	<select id="searchCarImagesDetail" parameterType="Car" resultMap="carImagesMap">
+		<![CDATA[
+		SELECT OP_CAR.CARID,OP_CAR.CARPRICE,OP_CAR.CARNAME,OP_CAR.CARENGINE,OP_CAR.CARINTAKE,OP_CAR.CARGEARBOX,OP_CAR.CARDRIVEMODE,OP_IMAGE.IMGPATH
+			FROM OP_CAR LEFT JOIN OP_IMAGE ON OP_CAR.CARID = OP_IMAGE.CARID
+		WHERE OP_CAR.CARID = #{carId}
+		]]>
+	</select>
+	
+</mapper>
